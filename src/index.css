@@ -1,0 +1,17 @@
+@layer theme, base, legacy, components, utilities;
+@import "tailwindcss";
+@import "./legacy.css" layer(legacy);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+  --font-sans: "Public Sans", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+
+  --animate-marquee: marquee 70s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
