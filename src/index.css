@@ -1,17 +1,151 @@
 @layer theme, base, legacy, components, utilities;
+
 @import "tailwindcss";
 @import "./legacy.css" layer(legacy);
 
 @custom-variant dark (&:where(.dark, .dark *));
-
 
 @theme {
   --font-sans: "Public Sans", system-ui, sans-serif;
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;
 
   --animate-marquee: marquee 70s linear infinite;
+
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* --------------------------------
+   GLOBAL FOUNDATION
+-------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* --------------------------------
+   TYPOGRAPHY
+-------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* --------------------------------
+   INTERACTION & ACCESSIBILITY
+-------------------------------- */
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid #b58d59;
+  outline-offset: 4px;
+}
+
+::selection {
+  color: #f5f1e8;
+  background: #29453e;
+}
+
+/* --------------------------------
+   IMAGE RENDERING
+-------------------------------- */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+/* --------------------------------
+   SCROLLBAR
+-------------------------------- */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b8b2a6 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #b8b2a6;
+  border-radius: 999px;
+}
+
+/* --------------------------------
+   REDUCED MOTION
+-------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
